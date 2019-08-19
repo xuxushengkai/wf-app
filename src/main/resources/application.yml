@@ -1,0 +1,10 @@
+spring:
+  application:
+    name: wf-app
+  profiles:
+    active: @profileActive@
+  servlet:
+    multipart:
+      enabled: true
+      max-file-size: 5MB #(这里是限制的文件大小)
+      max-request-size: 5MB #(这里是限制的文件大小)
