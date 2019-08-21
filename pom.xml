@@ -147,6 +147,30 @@
                 <artifactId>spring-boot-maven-plugin</artifactId>
             </plugin>
         </plugins>
+
+        <resources>
+            <!-- 此处的过滤策略大家根据自己的情况自行调整即可，目的就是为了不把无用文件打包进去，随便怎么实现都行 -->
+            <!-- 先在资源根目录排除所有的资源文件 -->
+            <resource>
+                <directory>src/main/resources</directory>
+                <excludes>
+                    <exclude>**/*</exclude>
+                    <exclude>*.*</exclude>
+                </excludes>
+            </resource>
+
+            <!-- 再单独指定需要拷贝的资源文件 -->
+            <resource>
+                <directory>src/main/resources</directory>
+                <filtering>true</filtering>
+                <includes>
+                    <include>application.yml</include>
+                    <include>application-${profileActive}.yml</include>
+                    <include>mapper/**/*</include>
+                </includes>
+            </resource>
+        </resources>
+
     </build>
 
 </project>
