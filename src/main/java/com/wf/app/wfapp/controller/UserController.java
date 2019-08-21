@@ -1,7 +1,7 @@
 package com.wf.app.wfapp.controller;
 
-import com.wf.app.wfapp.dto.vo.ResultMessage;
 import com.wf.app.wfapp.service.UserService;
+import com.wf.common.vo.ResultMessage;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;

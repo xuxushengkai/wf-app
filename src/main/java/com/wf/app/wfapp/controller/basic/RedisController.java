@@ -1,9 +1,9 @@
 package com.wf.app.wfapp.controller.basic;
 
 import com.wf.app.wfapp.dto.vo.RedisVO;
-import com.wf.app.wfapp.dto.vo.ResultMessage;
 import com.wf.app.wfapp.service.common.RedisService;
 import com.wf.common.controller.BaseController;
+import com.wf.common.vo.ResultMessage;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
