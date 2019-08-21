@@ -1,6 +1,6 @@
 package com.wf.app.wfapp.dto.vo;
 
-import com.wf.app.wfapp.constants.SystemCode;
+import com.wf.common.constants.SystemCode;
 import lombok.Getter;
 import lombok.Setter;
 
