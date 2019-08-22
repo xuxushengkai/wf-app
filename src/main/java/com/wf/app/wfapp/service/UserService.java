@@ -24,14 +24,14 @@ public class UserService extends ServiceImpl<UserMapper,UserEntity> {
 
     public LoginResultVO login(LoginVO loginVO) {
         LambdaQueryWrapper<UserEntity> queryWrapper = new LambdaQueryWrapper<>();
-        queryWrapper.eq(UserEntity::getTelephone, loginVO.getTelephone());
+        queryWrapper.eq(UserEntity::getAccount, loginVO.getAccount());
         UserEntity userEntity = getOne(queryWrapper);
         if (userEntity == null) {
-            throw new WFException(ResultCode.USER_NOT_EXIST.getMessage(),ResultCode.USER_NOT_EXIST.getCode());
+            throw new WFException(ResultCode.USER_NOT_EXIST);
         } else if (userEntity.getStatus() .equals(Constants.Status.DISABLE.code)) {
-            throw new WFException(ResultCode.USER_NOT_EXIST.getMessage(),ResultCode.USER_NOT_EXIST.getCode());
+            throw new WFException(ResultCode.USER_NOT_EXIST);
         }
-        if (!userEntity.getPwd().equals(DesEncryption.generatePassword(userEntity.getId(), loginVO.getPassword()))) {
+        if (!userEntity.getPwd().equals(DesEncryption.generatePassword(userEntity.getId(), loginVO.getPwd()))) {
             throw new WFException(ResultCode.PASSWORD_ERROR);
         }
         LoginResultVO resultVO = new LoginResultVO();

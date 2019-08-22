@@ -586,4 +586,16 @@ public class RedisService {
             return 0;
         }
     }
+
+    /**
+     * 设置redis锁
+     *
+     * @param key
+     * @param value
+     * @return
+     */
+    public boolean setNX(String key, String value) {
+        return redisTemplate.opsForValue().setIfAbsent(key, value);
+    }
+
 }
