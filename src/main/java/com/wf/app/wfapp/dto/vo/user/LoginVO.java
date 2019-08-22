@@ -23,4 +23,5 @@ public class LoginVO {
     @Size(max = 30,message = "密码最多30位")
     @ApiModelProperty(notes = "密码",required =true)
     private String password;
+
 }

@@ -1,9 +1,9 @@
 package com.wf.app.wfapp.aspect;
 
-import com.wf.app.wfapp.common.ResultCode;
 import com.wf.app.wfapp.dto.vo.user.JWTInfo;
 import com.wf.app.wfapp.service.common.RedisService;
 import com.wf.app.wfapp.util.JwtTokenUtil;
+import com.wf.common.constants.ResultCode;
 import com.wf.common.vo.ResultMessage;
 import org.apache.commons.lang3.StringUtils;
 import org.aspectj.lang.ProceedingJoinPoint;
