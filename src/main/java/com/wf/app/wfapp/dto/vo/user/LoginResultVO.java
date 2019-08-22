@@ -14,7 +14,7 @@ public class LoginResultVO {
     private String userId;
 
     @ApiModelProperty(notes = "用户名称")
-    private String userName;
+    private String name;
 
     @ApiModelProperty(notes = "手机号")
     private String telephone;
