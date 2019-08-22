@@ -1,13 +1,15 @@
 package com.wf.app.wfapp.dto.entity;
 
+import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableName;
+import com.wf.common.po.BaseEntityPo;
 import lombok.Data;
+
+import java.math.BigDecimal;
 
 @TableName(value = "tb_user")
 @Data
-public class UserEntity {
-
-    private String id;
+public class UserEntity extends BaseEntityPo {
 
     private String account;
 
@@ -18,4 +20,9 @@ public class UserEntity {
     private String telephone;
 
     private String wechat;
+
+    @TableField(value = "account_money")
+    private BigDecimal accountMoney;
+
+    private Integer status;
 }
