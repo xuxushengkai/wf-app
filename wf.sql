@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 80011
 File Encoding         : 65001
 
-Date: 2019-08-22 15:37:46
+Date: 2019-08-22 18:07:26
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -161,12 +161,30 @@ CREATE TABLE `tb_user` (
   `telephone` varchar(11) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT '' COMMENT '手机号',
   `wechat` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT '' COMMENT '微信号',
   `account_money` decimal(10,3) DEFAULT '0.000' COMMENT '账户金额',
+  `create_time` datetime DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
+  `update_time` datetime DEFAULT CURRENT_TIMESTAMP COMMENT '更新时间',
+  `is_deleted` bit(1) DEFAULT b'0' COMMENT '是否删除(0未删除 1已删除)',
+  `status` bit(1) DEFAULT b'0' COMMENT '状态(0:启用 1: 禁用)',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci COMMENT='用户表';
+
+-- ----------------------------
+-- Table structure for tb_user_login_record
+-- ----------------------------
+DROP TABLE IF EXISTS `tb_user_login_record`;
+CREATE TABLE `tb_user_login_record` (
+  `id` bigint(20) NOT NULL,
+  `user_id` char(36) NOT NULL COMMENT '用户ID',
+  `user_name` varchar(100) NOT NULL DEFAULT '' COMMENT '用户名称',
+  `telephone` char(12) DEFAULT NULL COMMENT '用户手机号',
   `login_time` datetime DEFAULT CURRENT_TIMESTAMP COMMENT '登录时间',
+  `logout_time` datetime DEFAULT NULL COMMENT '登出时间',
+  `token` varchar(350) NOT NULL DEFAULT '0' COMMENT 'token',
   `create_time` datetime DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
   `update_time` datetime DEFAULT CURRENT_TIMESTAMP COMMENT '更新时间',
   `is_deleted` bit(1) DEFAULT b'0' COMMENT '是否删除(0未删除 1已删除)',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci COMMENT='用户表';
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci COMMENT='用户登录日志表';
 
 -- ----------------------------
 -- Table structure for tb_user_role_relation
