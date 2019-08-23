@@ -17,6 +17,8 @@ import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDateTime;
+
 @Service
 public class UserService extends ServiceImpl<UserMapper, UserEntity> {
 
@@ -48,6 +50,7 @@ public class UserService extends ServiceImpl<UserMapper, UserEntity> {
         String token = jwtTokenUtil.generateToken(new JWTInfo(userEntity.getId(), loginVO.getAccount(), System.currentTimeMillis() + ""));
         resultVO.setToken(token);
         resultVO.setUserId(userEntity.getId());
+        resultVO.setLoginTime(LocalDateTime.now());
         redisService.set(token, JSON.toJSONString(resultVO), jwtTokenUtil.getJwtTokenExpire());
         return resultVO;
     }

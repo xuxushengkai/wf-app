@@ -20,7 +20,10 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import java.time.Instant;
 import java.time.LocalDateTime;
+import java.time.ZoneOffset;
+import java.time.format.DateTimeFormatter;
 
 @RestController
 @Api(value = "人员接口", description = "人员接口")
@@ -46,7 +49,7 @@ public class UserController extends BaseController {
                 // 记录日志
                 UserLoginRecordEntity record = new UserLoginRecordEntity();
                 BeanUtils.copyProperties(loginResultVO, record);
-                record.setLoginTime(LocalDateTime.now());
+                record.setLoginTime(loginResultVO.getLoginTime());
                 recordService.addLog(record);
                 return ResultMessage.success(loginResultVO);
             }catch (WFException e){
@@ -68,6 +71,7 @@ public class UserController extends BaseController {
         LoginResultCacheVO loginResultCacheVO = jwtTokenUtil.getLoginUserFromToken();
         BeanUtils.copyProperties(loginResultCacheVO,record);
         record.setToken(loginResultCacheVO.getToken());
+        record.setLoginTime(Instant.ofEpochMilli(Long.parseLong(loginResultCacheVO.getLoginTime())).atZone(ZoneOffset.ofHours(8)).toLocalDateTime());
         record.setLogoutTime(LocalDateTime.now());
         recordService.addLog(record);
         //登出

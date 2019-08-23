@@ -13,7 +13,7 @@ spring:
         min-idle: 0
       shutdown-timeout: 100
   datasource:
-    url: jdbc:mysql://47.110.123.17:3306/wf?useUnicode=true&characterEncoding=utf-8&serverTimezone=UTC
+    url: jdbc:mysql://47.110.123.17:3306/wf?useUnicode=true&characterEncoding=utf-8&serverTimezone=Asia/Shanghai
     username: csjr
     password: zj@96121
     driver-class-name: com.mysql.jdbc.Driver

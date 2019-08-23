@@ -6,6 +6,8 @@ import io.swagger.annotations.ApiModelProperty;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.time.LocalDateTime;
+
 @ApiModel(description = "登录结果信息")
 @Getter
 @Setter
@@ -26,8 +28,8 @@ public class LoginResultVO {
     @ApiModelProperty(notes = "登录token")
     private String token;
 
-   @JsonIgnore
-    private String loginTime;
+    @ApiModelProperty(notes = "登录时间")
+    private LocalDateTime loginTime;
 
 
 }
