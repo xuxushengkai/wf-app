@@ -26,4 +26,7 @@ public class LoginResultCacheVO implements Serializable {
     @ApiModelProperty(notes = "用户登录时间")
     private Long loginTime;
 
+    @ApiModelProperty(notes = "用户token")
+    private String token;
+
 }

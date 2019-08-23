@@ -67,6 +67,8 @@ public class UserController extends BaseController {
         UserLoginRecordEntity record = new UserLoginRecordEntity();
         LoginResultCacheVO loginResultCacheVO = jwtTokenUtil.getLoginUserFromToken();
         BeanUtils.copyProperties(loginResultCacheVO,record);
+        record.setToken(loginResultCacheVO.getToken());
+        record.setLogoutTime(LocalDateTime.now());
         recordService.addLog(record);
         //登出
         userService.logout();
