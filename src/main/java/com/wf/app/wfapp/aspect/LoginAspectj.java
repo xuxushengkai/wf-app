@@ -41,7 +41,6 @@ public class LoginAspectj {
         }
         int tokenExpire=jwtTokenUtil.getJwtTokenExpire();
         if (!redisService.expire(token, tokenExpire)) {
-            redisService.del(jwtTokenUtil.getLoginUserFromToken().getAccount());
             return ResultMessage.fail(ResultCode.LOGIN_TOKEN_EXPIRE.getCode(), ResultCode.LOGIN_TOKEN_EXPIRE.getMessage());
         }
         return pjp.proceed();

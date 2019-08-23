@@ -3,7 +3,6 @@ package com.wf.app.wfapp.config;
 import com.fasterxml.jackson.annotation.JsonAutoDetect;
 import com.fasterxml.jackson.annotation.PropertyAccessor;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import org.apache.commons.pool2.impl.GenericObjectPoolConfig;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.cache.CacheManager;
 import org.springframework.cache.annotation.CachingConfigurerSupport;
@@ -18,12 +17,10 @@ import org.springframework.data.redis.connection.RedisConnectionFactory;
 import org.springframework.data.redis.connection.RedisPassword;
 import org.springframework.data.redis.connection.RedisStandaloneConfiguration;
 import org.springframework.data.redis.connection.lettuce.LettuceConnectionFactory;
-import org.springframework.data.redis.connection.lettuce.LettucePoolingClientConfiguration;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.data.redis.serializer.Jackson2JsonRedisSerializer;
 import org.springframework.data.redis.serializer.StringRedisSerializer;
 
-import java.time.Duration;
 
 
 @Configuration
@@ -45,22 +42,6 @@ public class RedisConfig extends CachingConfigurerSupport {
     // 连接超时时间（毫秒）
     @Value("${spring.redis.timeout}")
     private Integer timeout;
-
-    // 连接池最大连接数（使用负值表示没有限制）
-    @Value("${spring.redis.lettuce.pool.max-active}")
-    private Integer maxTotal;
-    // 连接池最大阻塞等待时间（使用负值表示没有限制）
-    @Value("${spring.redis.lettuce.pool.max-wait}")
-    private Integer maxWait;
-    // 连接池中的最大空闲连接
-    @Value("${spring.redis.lettuce.pool.max-idle}")
-    private Integer maxIdle;
-    // 连接池中的最小空闲连接
-    @Value("${spring.redis.lettuce.pool.min-idle}")
-    private Integer minIdle;
-    // 关闭超时时间
-    @Value("${spring.redis.lettuce.shutdown-timeout}")
-    private Integer shutdown;
 
 
     @Bean
@@ -141,28 +122,10 @@ public class RedisConfig extends CachingConfigurerSupport {
         //RedisSentinelConfiguration configuration1 = new RedisSentinelConfiguration();
         //集群模式
         //RedisClusterConfiguration configuration2 = new RedisClusterConfiguration();
-        LettuceConnectionFactory factory = new LettuceConnectionFactory(configuration, getPoolConfig());
+        LettuceConnectionFactory factory = new LettuceConnectionFactory(configuration);
         //factory.setShareNativeConnection(false);//是否允许多个线程操作共用同一个缓存连接，默认true，false时每个操作都将开辟新的连接
         return factory;
     }
 
-    /**
-     * 获取缓存连接池
-     *
-     * @return
-     */
-    @Bean
-    public LettucePoolingClientConfiguration getPoolConfig() {
-        GenericObjectPoolConfig config = new GenericObjectPoolConfig();
-        config.setMaxTotal(maxTotal);
-        config.setMaxWaitMillis(maxWait);
-        config.setMaxIdle(maxIdle);
-        config.setMinIdle(minIdle);
-        LettucePoolingClientConfiguration pool = LettucePoolingClientConfiguration.builder()
-                .poolConfig(config)
-                .commandTimeout(Duration.ofMillis(10000))
-                .shutdownTimeout(Duration.ofMillis(100))
-                .build();
-        return pool;
-    }
+
 }

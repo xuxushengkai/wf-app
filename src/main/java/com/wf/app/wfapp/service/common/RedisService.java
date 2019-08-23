@@ -594,8 +594,8 @@ public class RedisService {
      * @param value
      * @return
      */
-    public boolean setNX(String key, String value) {
-        return redisTemplate.opsForValue().setIfAbsent(key, value);
+    public boolean setNX(String key, String value,long time) {
+        return redisTemplate.opsForValue().setIfAbsent(key, value,time, TimeUnit.SECONDS);
     }
 
 }

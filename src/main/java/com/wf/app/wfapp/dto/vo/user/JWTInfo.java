@@ -14,5 +14,6 @@ import lombok.Setter;
 @AllArgsConstructor
 public class JWTInfo {
     private String userId;
+    private String account;
     private String loginTime;
 }

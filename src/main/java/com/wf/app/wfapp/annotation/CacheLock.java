@@ -1,4 +1,4 @@
-package com.wf.app.wfapp.lock;
+package com.wf.app.wfapp.annotation;
 
 import java.lang.annotation.*;
 import java.util.concurrent.TimeUnit;

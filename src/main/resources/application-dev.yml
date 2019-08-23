@@ -1,17 +1,10 @@
 spring:
   redis:
-    database: 5
-    host: 192.168.2.106
+    database: 0
+    host: 192.168.222.134
     password: hh199511
     port: 6379
     timeout: 1000
-    lettuce:
-      pool:
-        max-active: 8
-        max-wait: -1
-        max-idle: 8
-        min-idle: 0
-      shutdown-timeout: 100
   datasource:
     url: jdbc:mysql://localhost:3306/wf?useUnicode=true&characterEncoding=utf-8&serverTimezone=UTC
     username: root
@@ -59,3 +52,11 @@ mybatis-plus:
     map-underscore-to-camel-case: true
   mapper-locations: classpath*:mapper/*/*.xml
   type-aliases-package: com.wf.**.po
+
+#登录TOKEN过期时间，单位为秒
+jwt:
+  expire: 86400
+  secret: WF_AUTH_TOKEN_JJWT
+  H5:
+    token:
+      expire: 172800 #token有效期为2天

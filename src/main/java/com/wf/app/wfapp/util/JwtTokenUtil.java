@@ -7,6 +7,7 @@ import com.wf.app.wfapp.dto.vo.user.JWTInfo;
 import com.wf.app.wfapp.dto.vo.user.LoginResultCacheVO;
 import com.wf.app.wfapp.service.common.RedisService;
 import com.wf.common.constants.AuthenticationKey;
+import com.wf.common.constants.CommonConstants;
 import com.wf.common.constants.ResultCode;
 import com.wf.common.exception.WFException;
 import lombok.extern.slf4j.Slf4j;
@@ -58,6 +59,7 @@ public class JwtTokenUtil {
     public String generateToken(JWTInfo jwtInfo, String encryptSecret, int expire) {
         Map<String, Object> data = new HashMap();
         data.put(Constants.JWT.JWT_KEY_USER_ID, jwtInfo.getUserId());
+        data.put(Constants.JWT.JWT_KEY_ACCOUNT,jwtInfo.getAccount());
         data.put(Constants.JWT.JWT_KEY_LOGIN_TIME, jwtInfo.getLoginTime());
         Claims claims = Jwts.claims(data);
         return Jwts.builder().setClaims(claims)
@@ -94,6 +96,7 @@ public class JwtTokenUtil {
         Jws<Claims> claimsJws = parserToken(token, encryptSecret);
         Claims body = claimsJws.getBody();
         JWTInfo jwtInfo = new JWTInfo(com.wf.common.utils.StringUtils.getObjectValue(body.get(Constants.JWT.JWT_KEY_USER_ID)),
+                com.wf.common.utils.StringUtils.getObjectValue(body.get(Constants.JWT.JWT_KEY_ACCOUNT)),
                 com.wf.common.utils.StringUtils.getObjectValue(body.get(Constants.JWT.JWT_KEY_LOGIN_TIME)));
         log.info("login token parser result,enterpriseId: [{}],userId:[{}],loginTime: [{}]", jwtInfo.getUserId(), DateFormatUtils.format(Long.parseLong(jwtInfo.getLoginTime()), "yyyy-MM-dd HH:mm:ss"));
         return jwtInfo;

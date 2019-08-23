@@ -4,7 +4,7 @@ import com.alibaba.fastjson.JSON;
 import com.wf.app.wfapp.annotation.Login;
 import com.wf.app.wfapp.dto.vo.user.LoginResultCacheVO;
 import com.wf.app.wfapp.lock.CacheKeyGenerator;
-import com.wf.app.wfapp.lock.CacheLock;
+import com.wf.app.wfapp.annotation.CacheLock;
 import com.wf.app.wfapp.lock.RedisLockHelper;
 import com.wf.app.wfapp.util.JwtTokenUtil;
 import com.wf.common.constants.ResultCode;
@@ -67,7 +67,6 @@ public class RequestAspect {
     @Around(value = "controllerAspect()")
     public Object methodAround(ProceedingJoinPoint pjp) throws Throwable {
         ServletRequestAttributes requestAttributes = (ServletRequestAttributes) RequestContextHolder.getRequestAttributes();
-        HttpServletRequest request = requestAttributes.getRequest();
         RequestContextHolder.setRequestAttributes(requestAttributes, true); // 子线程共享
 
         Instant startTime = Instant.now();
