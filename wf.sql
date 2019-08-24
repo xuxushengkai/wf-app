@@ -174,9 +174,9 @@ CREATE TABLE `tb_user` (
 DROP TABLE IF EXISTS `tb_user_login_record`;
 CREATE TABLE `tb_user_login_record` (
   `id` bigint(20) NOT NULL,
-  `user_id` char(36) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL COMMENT '用户ID',
-  `name` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT '' COMMENT '用户名称',
-  `account` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL COMMENT '账号',
+  `user_id` char(36) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL COMMENT '用户ID',
+  `name` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT '' COMMENT '用户名称',
+  `account` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL COMMENT '账号',
   `login_time` datetime DEFAULT CURRENT_TIMESTAMP COMMENT '登录时间',
   `logout_time` datetime DEFAULT NULL COMMENT '登出时间',
   `token` varchar(350) NOT NULL DEFAULT '0' COMMENT 'token',
@@ -184,7 +184,7 @@ CREATE TABLE `tb_user_login_record` (
   `update_time` datetime DEFAULT CURRENT_TIMESTAMP COMMENT '更新时间',
   `is_deleted` bit(1) DEFAULT b'0' COMMENT '是否删除(0未删除 1已删除)',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci COMMENT='用户登录日志表';
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci COMMENT='用户登录日志表';
 
 -- ----------------------------
 -- Table structure for tb_user_role_relation
