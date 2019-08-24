@@ -160,7 +160,7 @@ CREATE TABLE `tb_user` (
   `name` varchar(10) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT '' COMMENT '姓名',
   `telephone` varchar(11) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT '' COMMENT '手机号',
   `wechat` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT '' COMMENT '微信号',
-  `account_money` decimal(10,3) DEFAULT '0.000' COMMENT '账户金额',
+  `account_money` decimal(12,3) DEFAULT '0.000' COMMENT '账户金额',
   `create_time` datetime DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
   `update_time` datetime DEFAULT CURRENT_TIMESTAMP COMMENT '更新时间',
   `is_deleted` bit(1) DEFAULT b'0' COMMENT '是否删除(0未删除 1已删除)',
