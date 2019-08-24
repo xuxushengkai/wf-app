@@ -51,7 +51,7 @@
         <dependency>
             <groupId>mysql</groupId>
             <artifactId>mysql-connector-java</artifactId>
-            <version>5.1.46</version>
+            <scope>runtime</scope>
         </dependency>
 
         <!-- https://mvnrepository.com/artifact/com.aliyun.oss/aliyun-sdk-oss -->
@@ -141,9 +141,9 @@
             </activation>
         </profile>
         <profile>
-            <id>real</id>
+            <id>prod</id>
             <properties>
-                <profileActive>real</profileActive>
+                <profileActive>prod</profileActive>
             </properties>
             <activation>
                 <activeByDefault>false</activeByDefault>
