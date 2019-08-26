@@ -4,11 +4,6 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.Setter;
 
-/**
- * @author : zhanglei
- * @description
- * @date : 2019/3/7 17:49
- */
 @Getter
 @Setter
 @AllArgsConstructor
