@@ -1,7 +1,7 @@
 spring:
   redis:
     database: 0
-    host: 192.168.2.106
+    host: 192.168.222.134
     password:
     port: 6379
     timeout: 1000
@@ -60,3 +60,13 @@ jwt:
   H5:
     token:
       expire: 172800 #token有效期为2天
+
+#上传文件工具配置
+fdfs:
+  so-timeout: 1501
+  connect-timeout: 601
+  thumb-image: # 缩略图
+    width: 60
+    height: 60
+  tracker-list: # tracker地址
+    - 192.168.2.106:8410
