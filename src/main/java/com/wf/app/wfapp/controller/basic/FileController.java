@@ -29,7 +29,7 @@ import java.io.FileNotFoundException;
  * Date 2019/8/28 16:37
  **/
 @RestController
-@Api(value = "文件接口", description = "人员接口")
+@Api(value = "文件接口", description = "文件接口")
 @RequestMapping("/file")
 @Slf4j
 public class FileController {

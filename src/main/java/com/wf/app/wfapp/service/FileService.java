@@ -2,6 +2,7 @@ package com.wf.app.wfapp.service;
 
 import com.github.tobato.fastdfs.domain.StorePath;
 import com.github.tobato.fastdfs.service.FastFileStorageClient;
+import com.wf.common.exception.WFException;
 import com.wf.common.utils.StringUtils;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,13 +32,13 @@ public class FileService {
             String type = file.getContentType();
             if (!suffixes.contains(type)) {
                 log.info("上传失败，文件类型不匹配：{}", type);
-                return null;
+                throw new WFException("上传失败，文件类型不匹配");
             }
             // 2)校验图片内容
             BufferedImage image = ImageIO.read(file.getInputStream());
             if (image == null) {
                 log.info("上传失败，文件内容不符合要求");
-                return null;
+                throw new WFException("上传失败，文件内容不符合要求");
             }
 
             // 2、将图片上传到FastDFS
@@ -49,6 +50,7 @@ public class FileService {
             // 2.3、返回完整路径
             return "http://image.wf.com/" + storePath.getFullPath();
         } catch (Exception e) {
+            log.info("上传图片异常：{}",e.getMessage());
             return null;
         }
     }
