@@ -1,14 +1,14 @@
 spring:
   redis:
     database: 0
-    host: 192.168.222.134
+    host: 192.168.50.136
     password:
     port: 6379
     timeout: 1000
   datasource:
     url: jdbc:mysql://localhost:3306/wf?useUnicode=true&characterEncoding=utf-8&serverTimezone=Asia/Shanghai
     username: root
-    password: hh199511
+    password: 199124
     driver-class-name: com.mysql.jdbc.Driver
     type: com.alibaba.druid.pool.DruidDataSource
     # 下面为连接池的补充设置，应用到上面所有数据源中
@@ -69,4 +69,4 @@ fdfs:
     width: 60
     height: 60
   tracker-list: # tracker地址
-    - 192.168.2.106:8410
+    - 192.168.50.136:22122
